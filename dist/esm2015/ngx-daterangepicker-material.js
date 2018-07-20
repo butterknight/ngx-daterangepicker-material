@@ -277,11 +277,11 @@ class DaterangepickerComponent {
                 if (calendar[row][col].month() !== calendar[1][1].month()) {
                     classes.push('off');
                     // mark the last day of the previous month in this calendar
-                    if (this.lastDayOfPreviousMonthClass && calendar[row][col].month() < calendar[1][1].month() && calendar[row][col].date() === daysInLastMonth) {
+                    if (this.lastDayOfPreviousMonthClass && (calendar[row][col].month() < calendar[1][1].month() || calendar[1][1].month() === 0) && calendar[row][col].date() === daysInLastMonth) {
                         classes.push(this.lastDayOfPreviousMonthClass);
                     }
                     // mark the first day of the next month in this calendar
-                    if (this.firstDayOfNextMonthClass && calendar[row][col].month() > calendar[1][1].month() && calendar[row][col].date() === 1) {
+                    if (this.firstDayOfNextMonthClass && (calendar[row][col].month() > calendar[1][1].month() || calendar[row][col].month() === 0) && calendar[row][col].date() === 1) {
                         classes.push(this.firstDayOfNextMonthClass);
                     }
                 }
