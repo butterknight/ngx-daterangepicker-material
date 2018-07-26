@@ -1,4 +1,6 @@
-import { Component, OnInit, ElementRef, HostListener, EventEmitter, Output} from '@angular/core';
+import { 
+    Component, OnInit, ElementRef, ViewChild, EventEmitter, Output
+} from '@angular/core';
 import { FormControl} from '@angular/forms';
 
 import * as _moment from 'moment'; const moment = _moment;
@@ -69,11 +71,12 @@ export class DaterangepickerComponent implements OnInit {
     showCalInRanges: Boolean = false;
 
     options: any = {} ; // should get some opt from user
-    @Output('choosedDate') choosedDate:EventEmitter<Object>;
-    @Output('rangeClicked') rangeClicked:EventEmitter<Object>;
+    @Output('choosedDate') choosedDate: EventEmitter<Object>;
+    @Output('rangeClicked') rangeClicked: EventEmitter<Object>;
+    @ViewChild('pickerContainer') pickerContainer: ElementRef;
 
     constructor(
-        private el: ElementRef
+        private el: ElementRef,
     ) {
         this.choosedDate = new EventEmitter();
         this.rangeClicked = new EventEmitter();
@@ -671,6 +674,7 @@ export class DaterangepickerComponent implements OnInit {
 
         if (this.singleDatePicker) {
             this.setEndDate(this.startDate);
+            this.updateElement();
             if (this.autoApply) {
                 this.clickApply();
             }

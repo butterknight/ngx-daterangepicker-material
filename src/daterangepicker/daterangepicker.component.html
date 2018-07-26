@@ -1,4 +1,4 @@
-<div class="md-drppicker"
+<div class="md-drppicker" #pickerContainer
 [ngClass]="{
     ltr: locale.direction === 'ltr',
     rtl: this.locale.direction === 'rtl',
@@ -16,7 +16,7 @@
                     [ngClass]="{'active': range === chosenRange}">{{range}}</button>
           </li>
         </ul>
-    </div>
+    </div>  
     <div class="calendar" [ngClass]="{right: singleDatePicker, left: !singleDatePicker}"
         *ngIf="showCalInRanges">
         <div class="calendar-table">
@@ -46,7 +46,7 @@
                                     </select>
                             </ng-container>
                             <ng-container *ngIf="!showDropdowns || !calendarVariables.left.dropdowns">
-                                    {{this.locale.monthNames[calendarVariables?.left?.calendar[1][1].month()]}}  {{ calendarVariables?.left?.calendar[0][0].format(" YYYY")}}
+                                    {{this.locale.monthNames[calendarVariables?.left?.calendar[1][1].month()]}}  {{ calendarVariables?.left?.calendar[1][1].format(" YYYY")}}
                             </ng-container>
                         </th>
                         <ng-container *ngIf="(!calendarVariables.left.maxDate || calendarVariables.left.maxDate.isAfter(calendarVariables.left.calendar.lastDay)) && (!linkedCalendars || singleDatePicker )">
