@@ -74,6 +74,7 @@ export class DaterangepickerComponent implements OnInit {
     options: any = {} ; // should get some opt from user
     @Output('choosedDate') choosedDate: EventEmitter<Object>;
     @Output('rangeClicked') rangeClicked: EventEmitter<Object>;
+    @Output('datesUpdated') datesUpdated: EventEmitter<Object>;
     @ViewChild('pickerContainer') pickerContainer: ElementRef;
 
     constructor(
@@ -81,6 +82,7 @@ export class DaterangepickerComponent implements OnInit {
     ) {
         this.choosedDate = new EventEmitter();
         this.rangeClicked = new EventEmitter();
+        this.datesUpdated = new EventEmitter();
         this.updateMonthsInView();
     }
 
@@ -403,6 +405,8 @@ export class DaterangepickerComponent implements OnInit {
         }
 
         this.updateMonthsInView();
+        this.datesUpdated.emit({startDate: this.startDate, endDate: this.endDate});
+
     }
 
     setEndDate(endDate) {
@@ -434,6 +438,7 @@ export class DaterangepickerComponent implements OnInit {
             // this.updateElement();
         }
         this.updateMonthsInView();
+        this.datesUpdated.emit({startDate: this.startDate, endDate: this.endDate});
     }
 
     isInvalidDate(date) {
@@ -539,6 +544,7 @@ export class DaterangepickerComponent implements OnInit {
         if (this.chosenLabel) {
             this.choosedDate.emit({chosenLabel: this.chosenLabel, startDate: this.startDate, endDate: this.endDate});
         }
+        this.datesUpdated.emit({startDate: this.startDate, endDate: this.endDate});
         if(!this.keepCalendarVisibleAfterApplying) {
             this.hide();
         }
@@ -547,6 +553,7 @@ export class DaterangepickerComponent implements OnInit {
     clickCancel(e) {
         this.startDate = this._old.start;
         this.endDate = this._old.end;
+        this.datesUpdated.emit({startDate: this.startDate, endDate: this.endDate});
         this.hide();
     }
     /**
@@ -715,6 +722,8 @@ export class DaterangepickerComponent implements OnInit {
                 this.isShown  = false; // hide calendars
             }
             this.rangeClicked.emit({label: label, dates: dates});
+            this.datesUpdated.emit({startDate: this.startDate, endDate: this.endDate});
+
             this.clickApply();
         }
     };
@@ -778,6 +787,7 @@ export class DaterangepickerComponent implements OnInit {
         this.startDate = moment().startOf('day');
         this.endDate = moment().endOf('day');
         this.choosedDate.emit({chosenLabel: '', startDate: null, endDate: null});
+        this.datesUpdated.emit({startDate: null, endDate: null});
         this.hide();
     }
 
