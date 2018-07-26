@@ -41,6 +41,7 @@ export declare class DaterangepickerComponent implements OnInit {
     emptyWeekRowClass: string;
     firstDayOfNextMonthClass: string;
     lastDayOfPreviousMonthClass: string;
+    keepCalendarVisibleAfterApplying: boolean;
     locale: any;
     isShown: Boolean;
     leftCalendar: any;
@@ -53,6 +54,8 @@ export declare class DaterangepickerComponent implements OnInit {
     options: any;
     choosedDate: EventEmitter<Object>;
     rangeClicked: EventEmitter<Object>;
+    datesUpdated: EventEmitter<Object>;
+    pickerContainer: ElementRef;
     constructor(el: ElementRef);
     ngOnInit(): void;
     renderRanges(): void;

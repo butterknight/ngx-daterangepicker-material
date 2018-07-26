@@ -73,7 +73,7 @@ and [browse our demo code here](./demo/src/app).
 
 ## Available options
 
-### autoApply, showDropdowns, singleDatePicker, showWeekNumbers, showISOWeekNumbers, alwaysShowCalendars, showClearButton
+### autoApply, showDropdowns, singleDatePicker, showWeekNumbers, showISOWeekNumbers, alwaysShowCalendars, showClearButton, keepCalendarVisibleAfterApplying
 
 >These options are booleans
 
@@ -129,11 +129,31 @@ ranges: any = {
     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
   }
 ```
+### Customisation
+
+| Attribut | Type |Description |
+| --- | --- |--- |
+| firstMonthDayClass | string | add a custom class for all first day of the month |
+| lastMonthDayClass | string | add a custom class for all last day of the month |
+| emptyWeekRowClass | string | add a custom class for all date in a week not in the current month |
+| lastDayOfPreviousMonthClass | string | add a custom class for the last day of the previous month |
+| firstDayOfNextMonthClass | string | add a custom class for the first day of the next month |
+
+### Positioning
+
+| Attribut | Possible values |Description |
+| --- | --- |--- |
+| opens | left, center, right | position the calendar from the input element |
+| drops | up, down | position the calendar to the up or down of the calendar |
 
 ## Available events
 
 ### \(rangeClicked)
 
  >Fired when clicked on range, and send an object with range label and dates value, eg:  `{label: 'This Month', dates: [Moment, Moment]}`
+
+### \(datesUpdated)
+
+ >Fires when any date selection occurs, like when selecting days, ranges, or when applying or cancelling changes, and sends an object containing start and end dates, eg:  `{startDate: Moment, endDate: Moment}`
 
 ## [License](https://github.com/fetrarij/ngx-daterangepicker-material/blob/master/LICENSE)
